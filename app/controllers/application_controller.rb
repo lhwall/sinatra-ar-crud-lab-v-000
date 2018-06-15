@@ -17,9 +17,21 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/posts" do
+    #binding.pry
    @post = Post.create(params)
    #binding.pry
   erb :index
+  end
+
+  get "/posts" do
+    @posts = Post.all.to_a
+    #binding.pry
+    erb :index
+  end
+
+  get "posts/:id" do
+    @post = Post.find(:id)
+    erb :show
   end
 
 end
