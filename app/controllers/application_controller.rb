@@ -17,9 +17,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/posts" do
-    #binding.pry
    @post = Post.create(params)
-   #binding.pry
+
   erb :index
   end
 
@@ -29,9 +28,35 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get "posts/:id" do
-    @post = Post.find(:id)
+  get "/posts/:id" do
+    #binding.pry
+    id = params[:id]
+    @post = Post.find(id)
+    #binding.pry
     erb :show
+  end
+
+  get "/posts/:id/edit" do
+    @post= Post.find(params[:id])
+    #binding.pry
+  erb :edit
+  end
+
+  patch "/posts/:id" do
+    #binding.pry
+    @post = Post.find(params[:id])
+    @post.name = params[:name]
+    @post.content = params[:content]
+    @post.save
+  erb :show
+  end
+
+  delete "/posts/:id/delete" do
+    @post = Post.find(params[:id])
+    #binding.pry
+    @post.destroy
+    #binding.pry
+    delete.erb
   end
 
 end
