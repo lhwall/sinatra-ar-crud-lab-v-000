@@ -1,6 +1,6 @@
+<%= @post_name %>
+<p><%= @post_content %></p>
 <form class="" action="/posts" method="post">
-  <%= @post_name %>
-  <p><%= @post_content %></p>
 <p>Post Name: <input type="text" name="name" value=""></p>
 <p>Post Content: <input type="text" name="content" value=""></p>
 <input id="hidden" type="hidden" name="_method" value="patch">
